@@ -1,36 +1,36 @@
 .table {
-  &__section {
+  &Section {
     box-shadow: none;
     min-width: 10em;
     max-width: 15em;
   }
-  &__body,
-  &__content {
+  &Body,
+  &Content {
     border: none;
     outline: none;
     overflow: none;
     border-collapse: separate;
   }
-  &__section &__container {
+  &Section &Container {
     box-shadow: none;
   }
-  &__container &__content {
+  &Container &Content {
     width: 60%;
     border-collapse: separate;
   }
-  &__row &__cell {
+  &Row &Cell {
     text-align: center;
     padding: 10px 7px;
   }
-  &__cell {
+  &Cell {
     border: 1px solid rgba(200, 200, 200, 0.455);
     border-radius: 5px;
     text-transform: uppercase;
-    &-active {
+    &Active {
       background-color: rgb(0, 179, 219);
     }
   }
-  &__row &__cell-active {
+  &Row &CellActive {
     color: white;
     font-weight: bold;
   }

@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, MouseEvent } from 'react';
 import './CompareTable.scss';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,24 +9,26 @@ import Paper from '@material-ui/core/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { getData } from '../../store/userItems/selectors';
 import { updateData } from '../../store/userItems/actions';
-
-type RenderArrType = RenderArrItemType[];
-type RenderArrItemType = {
-  firstItemName: string;
-  firstItemIsMore: boolean;
-  secondItemName: string;
-  id: number[];
-};
-type UserItemType = {
-  name: string;
-  value: (boolean | null)[];
-};
-type UserItemsArrType = UserItemType[];
+import classes from './CompareTable.module.scss';
+import {
+  RenderArrType,
+  UserItemType,
+  UserItemsArrType,
+} from './CompareTableTypes';
 
 const CompareTable: FunctionComponent = () => {
-  const userItems: UserItemsArrType | [] = useSelector(getData);
+  const userItems: UserItemsArrType = useSelector(getData);
   const dispatch = useDispatch();
-  const mainClass: string = 'table';
+  const {
+    tableSection,
+    tableHeader,
+    tableContainer,
+    tableContent,
+    tableBody,
+    tableRow,
+    tableCell,
+    tableCellActive,
+  } = classes;
 
   const numOfUserItems: number = userItems.length;
   let renderArr: RenderArrType = [];
@@ -41,13 +43,16 @@ const CompareTable: FunctionComponent = () => {
         firstItemName: name,
         firstItemIsMore: value[u],
         secondItemName: secondItem.name,
-        id: [i, u],
+        id: `${i}, ${u}`,
       });
     }
   }
 
-  const toggleItem = ({ target: { id } }) => {
-    const idArr = id.split(',').map((e) => +e); // create an arr and convert all elements to numbers
+  const toggleItem = (e) => {
+    const {
+      target: { id },
+    } = e;
+    const idArr = id.split(',').map((el) => +el); // create an arr and convert all elements to numbers
     const [firstItemIndex, secondItemIndex] = idArr;
 
     const changeBool = (e: UserItemType, indexOfCompareElem: number) => {
@@ -55,7 +60,7 @@ const CompareTable: FunctionComponent = () => {
       return e;
     };
 
-    const newData = userItems.map(
+    const newData: UserItemsArrType = userItems.map(
       (e, index) =>
         index === firstItemIndex // find the first element to compare
           ? changeBool(e, secondItemIndex) // change the value of the first compared element
@@ -64,28 +69,27 @@ const CompareTable: FunctionComponent = () => {
           : e // return the unchanged item if it hasn't been compared
     );
 
-    console.log(newData);
     dispatch(updateData(newData));
   };
 
   return (
-    <div className={`${mainClass}__section`}>
-      <h3 className={`${mainClass}__header`}>Compare Items</h3>
-      <TableContainer component={Paper} className={`${mainClass}__container`}>
-        <Table className={`${mainClass}__content`}>
-          <TableBody className={`${mainClass}__body`}>
+    <div className={tableSection}>
+      <h3 className={tableHeader}>Compare Items</h3>
+      <TableContainer component={Paper} className={tableContainer}>
+        <Table className={tableContent}>
+          <TableBody className={tableBody}>
             {renderArr.map((item, index) => (
               <TableRow
                 key={index}
-                className={`${mainClass}__row`}
-                onClick={(e) => toggleItem(e)}
+                className={tableRow}
+                onClick={(e: MouseEvent<HTMLElement>) => toggleItem(e)}
               >
                 <TableCell
-                  id={item.id.toString()}
+                  id={item.id}
                   className={
                     item.firstItemIsMore
-                      ? `${mainClass}__cell-active table__cell`
-                      : `${mainClass}__cell`
+                      ? `${tableCell} ${tableCellActive}`
+                      : `${tableCell}`
                   }
                   component='th'
                   scope='row'
@@ -93,11 +97,11 @@ const CompareTable: FunctionComponent = () => {
                   {item.firstItemName}
                 </TableCell>
                 <TableCell
-                  id={item.id.toString()}
+                  id={item.id}
                   className={
                     !item.firstItemIsMore
-                      ? `${mainClass}__cell-active table__cell`
-                      : `${mainClass}__cell`
+                      ? `${tableCell} ${tableCellActive}`
+                      : `${tableCell}`
                   }
                 >
                   {item.secondItemName}
