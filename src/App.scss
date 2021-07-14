@@ -1,0 +1,21 @@
+.app {
+  &__container {
+    margin: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: flex-start;
+    justify-items: center;
+  }
+  &__entry-field {
+    display: grid;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .app {
+    &__container {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.resetButton {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  outline: none;
+  border: none;
+  background-color: rgb(255, 87, 87);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+}

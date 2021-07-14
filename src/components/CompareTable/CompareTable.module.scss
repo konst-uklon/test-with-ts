@@ -1,0 +1,37 @@
+.table {
+  &__section {
+    box-shadow: none;
+    min-width: 10em;
+    max-width: 15em;
+  }
+  &__body,
+  &__content {
+    border: none;
+    outline: none;
+    overflow: none;
+    border-collapse: separate;
+  }
+  &__section &__container {
+    box-shadow: none;
+  }
+  &__container &__content {
+    width: 60%;
+    border-collapse: separate;
+  }
+  &__row &__cell {
+    text-align: center;
+    padding: 10px 7px;
+  }
+  &__cell {
+    border: 1px solid rgba(200, 200, 200, 0.455);
+    border-radius: 5px;
+    text-transform: uppercase;
+    &-active {
+      background-color: rgb(0, 179, 219);
+    }
+  }
+  &__row &__cell-active {
+    color: white;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,40 @@
+.user {
+  &__form &__unput {
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 5px 0 0 5px;
+    padding: 9px;
+    outline: 0px;
+    font-size: 0.9em;
+    &:focus {
+      border: 1px solid rgb(0, 154, 188);
+      color: black;
+    }
+  }
+
+  &__submit {
+    background: rgb(0, 221, 118);
+    outline: none;
+    border-radius: 0 5px 5px 0;
+    border: 0px;
+    padding: 10px 15px;
+    color: white;
+    font-size: 0.9em;
+    &:active {
+      background-color: rgb(0, 170, 91);
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &-disabled {
+      cursor: unset;
+    }
+  }
+
+  &__error {
+    width: 80%;
+    color: red;
+    text-align: center;
+    margin: 0;
+    font-size: 0.8em;
+  }
+}
