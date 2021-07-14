@@ -1,5 +1,5 @@
 import { LOAD_DATA, UPDATE_DATA, DELETE_DATA } from './actionTypes';
-import { UserItemsArrType } from '../../components/CompareTable/CompareTableTypes';
+import { UserItemsArrType } from '../../appTypes/appTypes';
 
 export const loadData = (data: UserItemsArrType) => ({
   type: LOAD_DATA,

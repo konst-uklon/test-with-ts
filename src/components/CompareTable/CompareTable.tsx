@@ -10,11 +10,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getData } from '../../store/userItems/selectors';
 import { updateData } from '../../store/userItems/actions';
 import classes from './CompareTable.module.scss';
-import {
-  RenderArrType,
-  UserItemType,
-  UserItemsArrType,
-} from './CompareTableTypes';
+import { RenderArrType } from './CompareTableTypes';
+import { UserItemType, UserItemsArrType } from '../../appTypes/appTypes';
 
 const CompareTable: FunctionComponent = () => {
   const userItems: UserItemsArrType = useSelector(getData);
