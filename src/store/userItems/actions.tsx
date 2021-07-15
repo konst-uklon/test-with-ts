@@ -1,9 +1,8 @@
 import { LOAD_DATA, UPDATE_DATA, DELETE_DATA } from './actionTypes';
 import { UserItemsArrType } from '../../appTypes/appTypes';
 
-export const loadData = (data: UserItemsArrType) => ({
+export const loadData = () => ({
   type: LOAD_DATA,
-  payload: data,
 });
 
 export const updateData = (data: UserItemsArrType) => ({

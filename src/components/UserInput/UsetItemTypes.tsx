@@ -1,1 +1,1 @@
-export let i: string;
+export type ValuesArrTypes = (boolean | null)[];

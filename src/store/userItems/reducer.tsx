@@ -10,7 +10,7 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }: any) => {
   switch (type) {
     case LOAD_DATA:
-      return { ...state, ...payload };
+      return { ...state };
     case UPDATE_DATA:
       localStorage.setItem('user-items', JSON.stringify(payload));
       return { ...state, data: payload };
