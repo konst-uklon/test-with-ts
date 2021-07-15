@@ -11,11 +11,15 @@ import { getData } from '../../store/userItems/selectors';
 import { updateData } from '../../store/userItems/actions';
 import classes from './CompareTable.module.scss';
 import { RenderArrType } from './CompareTableTypes';
-import { UserItemType, UserItemsArrType } from '../../appTypes/appTypes';
+import {
+  UserItemType,
+  UserItemsArrType,
+  AppDispatch,
+} from '../../appTypes/appTypes';
 
 const CompareTable: FunctionComponent = () => {
   const userItems: UserItemsArrType = useSelector(getData);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const {
     tableSection,
     tableHeader,
@@ -45,11 +49,11 @@ const CompareTable: FunctionComponent = () => {
     }
   }
 
-  const toggleItem = (e) => {
+  const toggleItem = (e: any) => {
     const {
       target: { id },
     } = e;
-    const idArr = id.split(',').map((el) => +el); // create an arr and convert all elements to numbers
+    const idArr = id.split(',').map((el: string) => +el); // create an arr and convert all elements to numbers
     const [firstItemIndex, secondItemIndex] = idArr;
 
     const changeBool = (e: UserItemType, indexOfCompareElem: number) => {

@@ -1,6 +1,6 @@
 export type RenderArrItemType = {
   firstItemName: string;
-  firstItemIsMore: boolean;
+  firstItemIsMore: boolean | null;
   secondItemName: string;
   id: string;
 };

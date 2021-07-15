@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
 import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '../../store/storeTS';
 import { resetButton } from './ResetButton.module.scss';
 import { deleteData } from '../../store/userItems/actions';
+import { AppDispatch } from '../../appTypes/appTypes';
 
 const ResetButton: FunctionComponent = () => {
   const dispatch = useDispatch<AppDispatch>();

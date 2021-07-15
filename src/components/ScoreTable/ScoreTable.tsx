@@ -18,28 +18,16 @@ const ScoreTableTS: FunctionComponent = () => {
   const { container, theadCell, trowItem } = classes;
   const userItems: UserItemsArrType = useSelector(getData);
 
+  const sumOfScores = (arr: (boolean | null)[]) => {
+    let sum: number = 0;
+    arr.forEach((el) => (el ? (sum += 1) : null));
+    return sum;
+  };
+
   const arrWithScore: UserDataTypeWithScore[] = userItems
-    .forEach((e: UserItemType) => ({
-      score: e.value.reduce((prev: boolean, cur: boolean) => {
-        const num1: any = +(prev as boolean);
-        const num2: any = +(cur as boolean);
-        return num1 + num2;
-      }),
-      ...e,
-    }))
-    .sort((a: UserDataTypeWithScore, b: UserDataTypeWithScore) =>
-      // a.score > b.score ? 1 : -1
-      {
-        const num1: number = a.score;
-        const num2: number = b.score;
-        if (num1 > num2) {
-          return 1;
-        }
-        if (num1 < num2) {
-          return -1;
-        }
-        return 0;
-      }
+    .map((e: UserItemType) => ({ score: sumOfScores(e.value), ...e }))
+    .sort((a: UserDataTypeWithScore, b: UserDataTypeWithScore): number =>
+      a.score > b.score ? 1 : -1
     );
 
   const [firstItem] = arrWithScore;
