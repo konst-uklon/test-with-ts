@@ -29,6 +29,7 @@ const ScoreTableTS: FunctionComponent = () => {
   };
 
   const arrWithScore: UserItemType[] = userItems
+    // .map((e) => ({ score: e.value.reduce((prev, cur) => prev + cur), ...e }))
     .map((e: UserItemType) => ({
       score: sumOfScores(e.value), // add the property value to the original object
       ...e,

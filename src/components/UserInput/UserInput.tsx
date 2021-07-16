@@ -39,27 +39,23 @@ const UserInput: FunctionComponent = () => {
     value: { item: string },
     actions: { resetForm: () => void }
   ) => {
-    const dataLength: number = data.length; // get length of user data
-    const newItemValue: ValuesType[] = []; // empty array for new item, will fill with the relation of the new item to the existing ones
+    // get length of user data
+    const dataLength: number = data.length;
 
-    // loop for creating values of a new item
-    for (let i = 0; i <= dataLength; i++) {
-      switch (i) {
-        case dataLength:
-          newItemValue.push(null);
-          break;
-        default:
-          newItemValue.push(false);
-          break;
-      }
-    }
+    // array for new item, will fill with the relation of the new item to the existing ones
+    const newItemValuesArr: ValuesType[] = [
+      ...Array(dataLength).fill(false),
+      null,
+    ];
+
     // crete new item
-    const newItem: UserItemType = { name: value.item, value: newItemValue };
+    const newItem: UserItemType = { name: value.item, value: newItemValuesArr };
 
     // if there are already existing items, the new-to-old relationship is added to them by default "new less than old"
     if (dataLength > 0) {
       data.forEach((e) => e.value.push(true));
     }
+
     // new data for app with new item
     const newData: UserItemsArrType = [...data, newItem];
 
