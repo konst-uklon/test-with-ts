@@ -27,9 +27,9 @@ const UserInput: FunctionComponent = () => {
       .required('Required')
       .test('is-unique', `Item is already exists`, (value) => {
         if (data.length > 0 && value !== undefined) {
-          const names: string[] = data.map((e) => e.name.toLowerCase()); // getting an array of already existing elements, converting to one type for comparison
-          const isUnique: boolean = !names.includes(value.toLowerCase());
-          return isUnique;
+          return !data
+            .map((e) => e.name.toLowerCase()) // getting an array of already existing elements, converting to one type for comparison
+            .includes(value.toLowerCase()); // checking for the presence of the entered value in the existing ones
         }
         return true;
       }),
