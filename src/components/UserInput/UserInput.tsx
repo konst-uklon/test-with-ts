@@ -13,9 +13,9 @@ import { updateData } from '../../store/userItems/actions';
 import {
   UserItemType,
   UserItemsArrType,
+  ValuesType,
   AppDispatch,
 } from '../../appTypes/appTypes';
-import { ValuesArrTypes } from './UsetItemTypes';
 
 const UserInput: FunctionComponent = () => {
   const data: UserItemsArrType = useSelector(getData);
@@ -40,7 +40,7 @@ const UserInput: FunctionComponent = () => {
     actions: { resetForm: () => void }
   ) => {
     const dataLength: number = data.length; // get length of user data
-    const newItemValue: ValuesArrTypes = []; // empty array for new item, will fill with the relation of the new item to the existing ones
+    const newItemValue: ValuesType[] = []; // empty array for new item, will fill with the relation of the new item to the existing ones
 
     // loop for creating values of a new item
     for (let i = 0; i <= dataLength; i++) {

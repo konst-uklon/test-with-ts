@@ -41,9 +41,9 @@ const CompareTable: FunctionComponent = () => {
 
       renderArr.push({
         firstItemName: name,
-        firstItemIsMore: value[u],
+        firstItemIsMore: value[u], // we take only the values from the first element, since the second will have the opposite
         secondItemName: secondItem.name,
-        id: `${i}, ${u}`,
+        id: `${i}, ${u}`, // ID serves to determine, when clicking on the button, which pair we want to compare
       });
     }
   }
@@ -52,11 +52,11 @@ const CompareTable: FunctionComponent = () => {
     const {
       target: { id },
     } = e;
-    const idArr = id.split(',').map((el: string) => +el); // create an arr and convert all elements to numbers
-    const [firstItemIndex, secondItemIndex] = idArr;
+    const idArr = id.split(',').map((el: string) => +el); // create an id arr and convert all elements from string to numbers
+    const [firstItemIndex, secondItemIndex] = idArr; //we have only 2 parameters, since we set them in the line 46 of this component
 
     const changeBool = (e: UserItemType, indexOfCompareElem: number) => {
-      e.value[indexOfCompareElem] = !e.value[indexOfCompareElem];
+      e.value[indexOfCompareElem] = !e.value[indexOfCompareElem]; // since all values are boolean, we can simply change them to their opposite
       return e;
     };
 
@@ -85,9 +85,9 @@ const CompareTable: FunctionComponent = () => {
                 onClick={(e: MouseEvent<HTMLElement>) => toggleItem(e)}
               >
                 <TableCell
-                  id={item.id}
+                  id={item.id} // the index of the first and second compared element, given on line 46
                   className={
-                    item.firstItemIsMore
+                    item.firstItemIsMore // sets the class depending on whether the first element is larger than the second
                       ? `${tableCell} ${tableCellActive}`
                       : `${tableCell}`
                   }
@@ -97,9 +97,9 @@ const CompareTable: FunctionComponent = () => {
                   {item.firstItemName}
                 </TableCell>
                 <TableCell
-                  id={item.id}
+                  id={item.id} // the index of the first and second compared element, given on line 46
                   className={
-                    !item.firstItemIsMore
+                    !item.firstItemIsMore // inverse relationship with string 90
                       ? `${tableCell} ${tableCellActive}`
                       : `${tableCell}`
                   }

@@ -8,10 +8,11 @@ import { getData } from './store/userItems/selectors';
 import { loadData } from './store/userItems/actions';
 import { useEffect } from 'react';
 import ResetButton from './components/ResetButton/ResetButton';
+import { AppDispatch } from './appTypes/appTypes';
 
 const App: FunctionComponent = () => {
-  const isUserItems = useSelector(getData).length;
-  const dispatch = useDispatch();
+  const isUserItems = useSelector(getData).length; // determine if there are already existing items to render to the page
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(loadData());
@@ -25,7 +26,7 @@ const App: FunctionComponent = () => {
           <UserInput />
           {isUserItems ? <ScoreTable /> : null}
         </div>
-        {isUserItems ? <CompareTable /> : null}
+        {isUserItems >= 2 ? <CompareTable /> : null}
       </div>
     </>
   );

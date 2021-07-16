@@ -1,15 +1,11 @@
-export type RenderArrItemType = {
+import { ValuesType } from '../../appTypes/appTypes';
+
+// interfaces
+export interface RenderArrItemType {
   firstItemName: string;
-  firstItemIsMore: boolean | null;
+  firstItemIsMore: ValuesType;
   secondItemName: string;
   id: string;
-};
-
+}
+// types
 export type RenderArrType = RenderArrItemType[];
-
-export type UserItemType = {
-  name: string;
-  value: (boolean | null)[];
-};
-
-export type UserItemsArrType = UserItemType[];

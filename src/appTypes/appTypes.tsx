@@ -1,10 +1,13 @@
 import store from '../store/store';
 
-export type UserItemType = {
-  name: string;
-  value: (boolean | null)[];
-};
-
+// types
+export type ValuesType = boolean | null;
 export type UserItemsArrType = UserItemType[];
-
 export type AppDispatch = typeof store.dispatch;
+
+// interfaces
+export interface UserItemType {
+  name: string;
+  value: ValuesType[];
+  score?: number;
+}
