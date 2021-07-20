@@ -53,7 +53,7 @@ const UserInput: FunctionComponent = () => {
 
     // if there are already existing items, the new-to-old relationship is added to them by default "new less than old"
     if (dataLength > 0) {
-      data.forEach((e) => e.value.push(true));
+      data.forEach((e) => (e.value = [...e.value, true]));
     }
 
     // new data for app with new item
